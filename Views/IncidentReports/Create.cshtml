@@ -1,0 +1,62 @@
+﻿@model DisasterRelief.Models.IncidentReport
+
+@{
+    ViewData["Title"] = "Create Incident Report";
+}
+
+<h1>Create Incident Report</h1>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOccurred"></label>
+        <input asp-for="DateOccurred" class="form-control" type="date" />
+        <span asp-validation-for="DateOccurred" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateReported"></label>
+        <input asp-for="DateReported" class="form-control" type="date" />
+        <span asp-validation-for="DateReported" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Severity"></label>
+        <select asp-for="Severity" class="form-control"
+                asp-items="Html.GetEnumSelectList<DisasterRelief.Models.SeverityLevel>()"></select>
+        <span asp-validation-for="Severity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Status"></label>
+        <select asp-for="Status" class="form-control"
+                asp-items="Html.GetEnumSelectList<DisasterRelief.Models.IncidentStatus>()"></select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

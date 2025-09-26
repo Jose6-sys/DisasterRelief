@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DisasterRelief.Models.Volunteer>
+@{
+    ViewData["Title"] = "Volunteers";
+}
+
+<h1 class="mb-3">Volunteers</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">+ Add Volunteer</a>
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.Name</td>
+                <td>@v.Email</td>
+                <td>@v.Phone</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@v.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Details" asp-route-id="@v.Id" class="btn btn-sm btn-info">Details</a>
+                    <a asp-action="Delete" asp-route-id="@v.Id" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
