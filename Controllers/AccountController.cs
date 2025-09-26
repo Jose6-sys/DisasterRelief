@@ -16,14 +16,14 @@ namespace DisasterRelief.Controllers
             _signInManager = signInManager;
         }
 
-        // GET: /Account/Register
+        // ✅ GET: /Account/Register
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        // POST: /Account/Register
+        // ✅ POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -46,7 +46,9 @@ namespace DisasterRelief.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+
+                    //  Always go to IncidentReports after registration
+                    return RedirectToAction("Index", "IncidentReports");
                 }
 
                 foreach (var error in result.Errors)
@@ -58,7 +60,7 @@ namespace DisasterRelief.Controllers
             return View(model);
         }
 
-        // GET: /Account/Login
+        // ✅ GET: /Account/Login
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
@@ -66,7 +68,7 @@ namespace DisasterRelief.Controllers
             return View();
         }
 
-        // POST: /Account/Login
+        // ✅ POST: /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
@@ -78,7 +80,8 @@ namespace DisasterRelief.Controllers
 
                 if (result.Succeeded)
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+                    //  Always go to IncidentReports after login
+                    return RedirectToAction("Index", "IncidentReports");
                 }
 
                 ModelState.AddModelError("", "Invalid login attempt.");
@@ -86,14 +89,15 @@ namespace DisasterRelief.Controllers
 
             return View(model);
         }
-
-        // POST: /Account/Logout
+        // ✅ POST: /Account/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+
+            //  Redirect straight to Login instead of Home
+            return RedirectToAction("Login", "Account");
         }
     }
 }
