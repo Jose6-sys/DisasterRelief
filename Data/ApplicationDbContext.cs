@@ -11,7 +11,7 @@ namespace DisasterRelief.Data
         {
         }
 
-        // Your tables
+        // My tables
         public DbSet<IncidentReport> IncidentReports { get; set; }
         public DbSet<Donation> Donations { get; set; }
         public DbSet<Volunteer> Volunteers { get; set; }

@@ -11,7 +11,7 @@ namespace DisasterRelief.Models
 
         public string? Description { get; set; }
 
-        // ✅ Make volunteer optional
+        //  Make volunteer optional
         public string? AssignedVolunteerId { get; set; }
         public ApplicationUser? AssignedVolunteer { get; set; }
 

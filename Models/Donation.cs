@@ -16,7 +16,6 @@ namespace DisasterRelief.Models
         public string ContactName { get; set; }
         public string ContactPhone { get; set; }
 
-        // 👇 Make these optional (do NOT mark with [Required])
         public string? DonorId { get; set; }
         public ApplicationUser? Donor { get; set; }
 

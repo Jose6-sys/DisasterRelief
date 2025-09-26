@@ -19,7 +19,7 @@ namespace DisasterRelief.Controllers
             _userManager = userManager;
         }
 
-        // GET: Donations
+        // GET Donations
         public async Task<IActionResult> Index()
         {
             var donations = await _context.Donations
@@ -28,7 +28,7 @@ namespace DisasterRelief.Controllers
             return View(donations);
         }
 
-        // GET: Donations/Details/5
+        // GET Donations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -42,13 +42,13 @@ namespace DisasterRelief.Controllers
             return View(donation);
         }
 
-        // GET: Donations/Create
+        // GET Donations/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Donations/Create
+        // POST Donations/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Donation donation)

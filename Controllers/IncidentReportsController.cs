@@ -19,29 +19,29 @@ namespace DisasterRelief.Controllers
             _userManager = userManager;
         }
 
-        // GET: IncidentReports
+        // GET IncidentReports
         public async Task<IActionResult> Index()
         {
             var reports = await _context.IncidentReports
-                                        .Include(r => r.Reporter) // ✅ load reporter info
+                                        .Include(r => r.Reporter) //  load reporter info
                                         .ToListAsync();
             return View(reports);
         }
 
-        // GET: IncidentReports/Details/5
+        // GET IncidentReports/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
 
             var report = await _context.IncidentReports
-                                       .Include(r => r.Reporter) // ✅ show reporter in details
+                                       .Include(r => r.Reporter) // show reporter in details
                                        .FirstOrDefaultAsync(m => m.Id == id);
             if (report == null) return NotFound();
 
             return View(report);
         }
 
-        // GET: IncidentReports/Create
+        // GET IncidentReports/Create
         public IActionResult Create()
         {
             return View();
@@ -82,7 +82,7 @@ namespace DisasterRelief.Controllers
             return View(report);
         }
 
-        // GET: IncidentReports/Edit/5
+        // GET IncidentReports/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -93,7 +93,7 @@ namespace DisasterRelief.Controllers
             return View(report);
         }
 
-        // POST: IncidentReports/Edit/5
+        // POST IncidentReports/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Location,DateOccurred,DateReported,Severity,Status")] IncidentReport report)
@@ -121,7 +121,7 @@ namespace DisasterRelief.Controllers
             return View(report);
         }
 
-        // GET: IncidentReports/Delete/5
+        // GET IncidentReports/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null) return NotFound();
@@ -134,7 +134,7 @@ namespace DisasterRelief.Controllers
             return View(report);
         }
 
-        // POST: IncidentReports/Delete/5
+        // POST IncidentReports/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

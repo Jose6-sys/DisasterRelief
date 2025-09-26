@@ -16,14 +16,14 @@ namespace DisasterRelief.Controllers
             _signInManager = signInManager;
         }
 
-        // ✅ GET: /Account/Register
+        // GET /Account/Register
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
-        // ✅ POST: /Account/Register
+        //  POST /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
@@ -60,7 +60,7 @@ namespace DisasterRelief.Controllers
             return View(model);
         }
 
-        // ✅ GET: /Account/Login
+        // GET /Account/Login
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
@@ -68,7 +68,7 @@ namespace DisasterRelief.Controllers
             return View();
         }
 
-        // ✅ POST: /Account/Login
+        //  POST /Account/Login
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
@@ -89,7 +89,7 @@ namespace DisasterRelief.Controllers
 
             return View(model);
         }
-        // ✅ POST: /Account/Logout
+        // POST /Account/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

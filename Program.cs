@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ? Connection string (make sure it's in appsettings.json under "DefaultConnection")
+//  Connection string (make sure it's in appsettings.json under "DefaultConnection")
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// ? Add DbContext with SQL Server
+// Add DbContext with SQL Server
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// ? Identity (use ApplicationUser + roles)
+//  Identity (use ApplicationUser + roles)
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false; // set to true if you want email confirmation
@@ -21,20 +21,20 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-// ? Configure cookie redirect to use YOUR AccountController
+//  Configure cookie redirect to use YOUR AccountController
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";            // go to your controller, not Identity area
     options.AccessDeniedPath = "/Account/Login";     // fallback if not authorized
 });
 
-// ? MVC + Razor Pages
+//  MVC + Razor Pages
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// ? Middleware pipeline
+// Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -49,7 +49,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// ? Routes
+// Routes
 // Default goes to Account/Login instead of Home
 app.MapControllerRoute(
     name: "default",
